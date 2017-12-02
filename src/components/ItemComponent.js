@@ -21,7 +21,6 @@ class ItemComponent extends Component {
     this.handleClickfavorite = this.handleClickfavorite.bind(this);
   }
 
-  //handleClick = () => this.setState({ ordred: !this.state.ordred })
   handleClickOrder(){
     this.setState({ ordred: !this.state.ordred });
   }
@@ -30,9 +29,7 @@ class ItemComponent extends Component {
     this.setState({ inFavorite: !this.state.inFavorite });
   }
 
-
   render() {
-    //const { active } = this.state.active
     let icon = 'search';
     if(this.props.itemType === 'product'){
       icon = 'cubes';
@@ -64,7 +61,7 @@ class ItemComponent extends Component {
                     {this.props.short_desc}
                   </Card.Description>
                 </Grid.Column>
-                <Grid.Column width={5}>
+                <Grid.Column width={5} textAlign="right">
                   <div>
                     {
                       this.state.tag.map((item, key) => (
@@ -73,7 +70,10 @@ class ItemComponent extends Component {
                     }
                   </div>
                   <br />
-                  <Label floated="right" color="teal" content={this.props.price.min + ' ~ ' + this.props.price.max} icon="dollar" />
+                  <Label.Group tag color='black'>
+                    { this.props.price.min ? <Label as='a'>{this.props.price.min}DT</Label> : null }
+                    { this.props.price.max ? <Label as='a'>{this.props.price.max}DT</Label> : null }
+                  </Label.Group>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
