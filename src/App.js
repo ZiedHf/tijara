@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import ItemComponent from './components/ItemComponent';
-import { feedObject as feed } from './assets/fakeApi'
+import React, { Component } from "react";
+import { ItemComponent } from "./components/ItemComponent";
+import { feedObject as feed } from "./assets/fakeApi";
 
 class App extends Component {
   render() {
@@ -8,8 +8,8 @@ class App extends Component {
       <div>
         {
           feed.map((item, key) => (
-
-            <ItemComponent             key={key}
+            <ItemComponent
+              key={key}
               title={item.title}
               userID={item.userID}
               itemType={item.itemType}
