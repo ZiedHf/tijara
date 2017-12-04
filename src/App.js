@@ -8,8 +8,8 @@ class App extends Component {
       <div>
         {
           feed.map((item, key) => (
-            <ItemComponent
-              key={key}
+
+            <ItemComponent             key={key}
               title={item.title}
               userID={item.userID}
               itemType={item.itemType}
