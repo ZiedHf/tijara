@@ -36,7 +36,7 @@ class ItemComponent extends Component {
     }else if(this.props.itemType === 'service'){
       icon = 'wrench';
     }
-
+    //this is a test
     return (
       <div>
         <Card fluid>
