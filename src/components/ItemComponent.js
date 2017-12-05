@@ -1,8 +1,42 @@
-import React, { Component } from 'react';
-import 'semantic-ui-css/semantic.min.css';
-import { Button, Card, Image, Grid, Icon, Header, Flag, Label } from 'semantic-ui-react'
-import '../css/main.css';
+import React, { Component } from "react";
+import "semantic-ui-css/semantic.min.css";
+import { Button, Card, Image, Grid, Icon, Header, Flag, Label } from "semantic-ui-react";
+import "../css/main.css";
 
+
+class ButtonAddToCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      animated: false
+    };
+
+    this.activateAnimation();
+  }
+
+  activateAnimation() {
+    setTimeout(
+      this.setState({ animated: true })
+      , 2000);
+
+    setTimeout(
+      console.log(this.state.animated)
+      , 8000);
+  }
+
+  render() {
+    let { btnText, btnColor, handleClickOrder } = this.props;
+    console.log(this.state.animated);
+    return (
+      <Button basic color={btnColor} animated='false' onClick={handleClickOrder}>
+        <Button.Content hidden>{btnText}</Button.Content>
+        <Button.Content visible>
+          <Icon name='shop' />
+        </Button.Content>
+      </Button>
+    );
+  }
+}
 class ItemComponent extends Component {
 
   constructor(props) {
@@ -30,11 +64,11 @@ class ItemComponent extends Component {
   }
 
   render() {
-    let icon = 'search';
-    if(this.props.itemType === 'product'){
-      icon = 'cubes';
-    }else if(this.props.itemType === 'service'){
-      icon = 'wrench';
+    let icon = "search";
+    if(this.props.itemType === "product"){
+      icon = "cubes";
+    }else if(this.props.itemType === "service"){
+      icon = "wrench";
     }
     //this is a test
     return (
@@ -44,11 +78,11 @@ class ItemComponent extends Component {
             <Grid columns={2}>
               <Grid.Row>
                 <Grid.Column width={11}>
-                <Image
-                  floated='left'
-                  label={{ as: 'a', color: 'black', content: this.state.itemType, icon: icon, ribbon: true }}
-                  size='small'
-                  src={this.props.img}
+                  <Image
+                    floated='left'
+                    label={{ as: "a", color: "black", content: this.state.itemType, icon: icon, ribbon: true }}
+                    size='small'
+                    src={this.props.img}
                   />
                   <Card.Header>
                     <Header as='h3'>{this.props.title}</Header>
@@ -80,14 +114,16 @@ class ItemComponent extends Component {
           </Card.Content>
           <Card.Content extra>
             <div className='ui three buttons'>
-              <Button basic color={this.state.ordred ? 'red' : 'blue'} animated='fade' onClick={this.handleClickOrder}>
-                <Button.Content hidden>{this.state.ordred ? 'Remove From Card' : 'Add To Card'}</Button.Content>
+              {/* <Button basic color={this.state.ordred ? "red" : "blue"} animated='fade' onClick={this.handleClickOrder}>
+                <Button.Content hidden>{this.state.ordred ? "Remove From Card" : "Add To Card"}</Button.Content>
                 <Button.Content visible>
                   <Icon name='shop' />
                 </Button.Content>
-              </Button>
-              <Button basic color={this.state.inFavorite ? 'red' : 'blue'} animated='fade' onClick={this.handleClickfavorite}>
-                <Button.Content hidden>{this.state.inFavorite ? 'Remove From Favorite' : 'Add To Favorite'}</Button.Content>
+              </Button> */}
+              { this.state.ordred ? <ButtonAddToCard btnColor='red' btnText="Remove From Card" handleClickOrder={this.handleClickOrder} /> : null}
+              { this.state.ordred ? null : <ButtonAddToCard btnColor='blue' btnText="Add To Card"  handleClickOrder={this.handleClickOrder} />}
+              <Button basic color={this.state.inFavorite ? "red" : "blue"} animated='fade' onClick={this.handleClickfavorite}>
+                <Button.Content hidden>{this.state.inFavorite ? "Remove From Favorite" : "Add To Favorite"}</Button.Content>
                 <Button.Content visible>
                   <Icon name='favorite' />
                 </Button.Content>
