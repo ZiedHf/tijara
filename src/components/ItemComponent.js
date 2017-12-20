@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Card, Image, Grid, Icon, Header, Flag, Label } from 'semantic-ui-react'
 import '../css/main.css';
-
+import PropTypes from 'prop-types';
 class ItemComponent extends Component {
+  static propTypes = {
+    itemType: PropTypes.string,
+    category: PropTypes.array,
+    tag: PropTypes.array,
+    country: PropTypes.array,
+    region: PropTypes.array,
+    ordred: PropTypes.bool,
+    inFavorite: PropTypes.bool,
+  }
 
   constructor(props) {
     super(props);
